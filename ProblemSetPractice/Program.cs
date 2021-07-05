@@ -14,8 +14,16 @@ namespace ProblemSetPractice
 
         static void EarlyTest()
         {
-            
+            // Add temp tests.
+        }
 
+        static void FrequencyDictTest()
+        {
+            var freq = SherlockValidString.FrequencyDictionary("abcabcabca");
+            foreach(var l in freq)
+            {
+                Console.WriteLine($"Key: {l.Key} Value:{l.Value}");
+            }
         }
 
         static void Run()
