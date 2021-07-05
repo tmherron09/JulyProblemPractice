@@ -14,7 +14,7 @@ namespace ProblemSetPractice
 
         static void EarlyTest()
         {
-            // Add temp tests.
+            SherlockValidString.Solve();
         }
 
         static void FrequencyDictTest()

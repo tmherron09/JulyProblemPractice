@@ -51,6 +51,10 @@ namespace ProblemSetPractice
             Solve(s);
             s = "abcbc";
             Solve(s);
+            s = "abcaabc";
+            Solve(s);
+            s = "aabcabcbabc";
+            Solve(s);
         }
 
 
@@ -58,19 +62,41 @@ namespace ProblemSetPractice
 
         public static void Solve(string s)
         {
-            Dictionary<char, int> frequency = new Dictionary<char, int>();
-            foreach(var l in s)
-            {
-                if(frequency.ContainsKey(l))
-                {
-                    frequency[l]++;
-                } else
-                {
-                    frequency.Add(l, 1);
-                }
+            Dictionary<char, int> frequency = FrequencyDictionary(s);
+            Dictionary<int, int> occurance = OccuranceDictionary(frequency);
 
+            if (occurance.Count == 1)
+            {
+                ResultOutput(s, true);
+                return;
+            }
+            else if (occurance.Count > 2 && !occurance.ContainsValue(1))
+            {
+                ResultOutput(s, false);
+                return;
             }
 
+            int singleFreq = 0;
+            int commonFreq = 0;
+            foreach (var number in occurance)
+            {
+                if (number.Value == 1)
+                {
+                    singleFreq = number.Key;
+                }
+                else
+                {
+                    commonFreq = number.Key;
+                }
+            }
+            if (singleFreq == commonFreq + 1)
+            {
+                ResultOutput(s, true);
+            }
+            else
+            {
+                ResultOutput(s, false);
+            }
 
         }
 
@@ -92,6 +118,23 @@ namespace ProblemSetPractice
             return frequency;
         }
 
+        public static Dictionary<int, int> OccuranceDictionary(Dictionary<char, int> frequency)
+        {
+            Dictionary<int, int> occurance = new Dictionary<int, int>();
+            foreach (var freq in frequency)
+            {
+                if (occurance.ContainsKey(freq.Value))
+                {
+                    occurance[freq.Value]++;
+                }
+                else
+                {
+                    occurance.Add(freq.Value, 1);
+                }
+            }
+            return occurance;
+        }
+
 
         public static void SolveExample()
         {
@@ -99,6 +142,10 @@ namespace ProblemSetPractice
 
         }
 
+        public static void ResultOutput(string s, bool result)
+        {
+            Console.Write($"String: '{s}' is {(result ? "Valid" : "Invalid")}\n");
+        }
 
     }
 }
