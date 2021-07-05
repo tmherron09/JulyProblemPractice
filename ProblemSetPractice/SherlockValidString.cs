@@ -55,6 +55,14 @@ namespace ProblemSetPractice
             Solve(s);
             s = "aabcabcbabc";
             Solve(s);
+            s = "abcdefghhgfedecba";
+            Solve(s);
+            s = "aabbccddeefghi";
+            Solve(s);
+            s = "aabbc";
+            Solve(s);
+            s = "xxxaabbccrry";
+            Solve(s);
         }
 
 
@@ -70,7 +78,7 @@ namespace ProblemSetPractice
                 ResultOutput(s, true);
                 return;
             }
-            else if (occurance.Count > 2 && !occurance.ContainsValue(1))
+            else if (occurance.Count > 2 || !occurance.ContainsValue(1))
             {
                 ResultOutput(s, false);
                 return;
@@ -89,7 +97,7 @@ namespace ProblemSetPractice
                     commonFreq = number.Key;
                 }
             }
-            if (singleFreq == commonFreq + 1)
+            if (singleFreq == commonFreq + 1 || singleFreq == 1)
             {
                 ResultOutput(s, true);
             }
